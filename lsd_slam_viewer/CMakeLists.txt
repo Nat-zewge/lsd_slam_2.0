@@ -8,6 +8,7 @@ project(lsd_slam_viewer)
 #  RelWithDebInfo : w/ debug symbols, w/ optimization
 #  MinSizeRel : w/o debug symbols, w/ optimization, stripped binaries
 set(CMAKE_BUILD_TYPE Release)
+set(OpenCV_DIR /usr/local/share/OpenCV)
 
 ADD_SUBDIRECTORY(${PROJECT_SOURCE_DIR}/thirdparty/Sophus)
 
@@ -29,13 +30,14 @@ set(QT_USE_QTOPENGL TRUE)
 set(QT_USE_QTXML TRUE)
 find_package(QGLViewer REQUIRED)
 find_package(Eigen3 REQUIRED)
-find_package(OpenCV REQUIRED)
+find_package(OpenCV 3 REQUIRED)
 find_package(Boost REQUIRED COMPONENTS thread)
 
 include_directories(${QGLVIEWER_INCLUDE_DIR}
 		    ${catkin_INCLUDE_DIRS}
 		    ${EIGEN3_INCLUDE_DIR}
-		    ${QT_INCLUDES} )
+		    ${QT_INCLUDES}
+	            ${OpenCV_INCLUDE_DIRS})
 
 # SSE flags
 set(CMAKE_CXX_FLAGS
@@ -77,5 +79,6 @@ target_link_libraries(viewer ${QGLViewer_LIBRARIES}
 			     ${catkin_LIBRARIES}
 			     ${Boost_LIBRARIES}
 			     ${QT_LIBRARIES}
+			     ${OpenCV_LIBRARIES}	
 			     GL glut GLU
 )

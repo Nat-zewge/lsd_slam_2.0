@@ -8,6 +8,7 @@ project(lsd_slam_core)
 #  RelWithDebInfo : w/ debug symbols, w/ optimization
 #  MinSizeRel : w/o debug symbols, w/ optimization, stripped binaries
 set(CMAKE_BUILD_TYPE Release)
+set(OpenCV_DIR /usr/local/share/OpenCV)
 
 find_package(catkin REQUIRED COMPONENTS
   cv_bridge
@@ -23,6 +24,7 @@ find_package(catkin REQUIRED COMPONENTS
 
 find_package(Eigen3 REQUIRED)
 find_package(X11 REQUIRED)
+find_package(OpenCV 3 REQUIRED)
 include(cmake/FindG2O.cmake)
 include(cmake/FindSuiteParse.cmake)
 
